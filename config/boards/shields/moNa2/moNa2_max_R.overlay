@@ -1,23 +1,22 @@
 #include "moNa2.dtsi"
 
-&default_transform {
-    col-offset = <7>;
+&kscan0 {
+        compatible = "zmk,kscan-gpio-charlieplex";
+        wakeup-source;
+
+        interrupt-gpios = <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN) >;
+        gpios
+          = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+          , <&xiao_d 6 GPIO_ACTIVE_HIGH>
+          , <&xiao_d 10 GPIO_ACTIVE_HIGH>
+          , <&xiao_d 9 GPIO_ACTIVE_HIGH>
+          , <&xiao_d 8 GPIO_ACTIVE_HIGH>
+          , <&xiao_d 7 GPIO_ACTIVE_HIGH>
+          ; // addressable space is 5x5, (minus paired values)
 };
 
-&kscan0 {
-        row-gpios
-            = <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> 
-            , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> 
-            , <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> 
-            , <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> 			
-            ;
-        col-gpios
-            = <&xiao_d 9 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
-            , <&  GPIO_ACTIVE_HIGH> 
-            , <&  GPIO_ACTIVE_HIGH>
-            ;
+&default_transform {
+    row-offset = <4>;
 };
 
 / {
