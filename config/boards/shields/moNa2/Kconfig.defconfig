@@ -14,7 +14,7 @@ endif
 if SHIELD_MONA2_MAX_L
 
 config ZMK_KEYBOARD_NAME
-    default "moNa2__max_L"
+    default "moNa2_max_L"
 
 config ZMK_SPLIT
     default y

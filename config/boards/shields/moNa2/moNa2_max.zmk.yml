@@ -2,7 +2,7 @@ file_format: "1"
 id: moNa2_max
 name: moNa2_max
 type: shield
-url: https://github.com/sayu-hub/zmk-config-moNa2
+url: https://github.com/sayu-hub/zmk-config-tester2
 requires: [seeeduino_xiao_ble]
 features:
   - keys
