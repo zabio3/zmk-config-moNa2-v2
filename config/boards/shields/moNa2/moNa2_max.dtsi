@@ -8,7 +8,7 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        rows = <9>;  
+        rows = <8>;  
         columns = <7>; 
                                                                     //  assuming your right board looks like this: (given the corrected matrix in /matrix.txt)
                                                                     //          RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)
