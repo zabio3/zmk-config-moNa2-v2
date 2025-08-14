@@ -1,4 +1,6 @@
 {
+  "id": "mona2",
+  "name": "mona2",
   "layouts": {
     "default_layout": {
       "name": "default_layout",
@@ -19,7 +21,6 @@
         { "row": 2, "col":  2, "x":  2, "y": 2 },
         { "row": 2, "col":  3, "x":  3, "y": 2 },
         { "row": 2, "col":  4, "x":  4, "y": 2 },
-        { "row": 2, "col":  5, "x":  5, "y": 2 },
         { "row": 2, "col":  7, "x":  7, "y": 2 },
         { "row": 2, "col":  8, "x":  8, "y": 2 },
         { "row": 2, "col":  9, "x":  9, "y": 2 },
@@ -64,7 +65,6 @@
       "ref": "right_encoder",
       "name": "encoder_right",
       "identifier": "encoder_right",
-      "compatible": "alps,ec11",
       "enabled": false
     }
   ]
