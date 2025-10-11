@@ -118,7 +118,7 @@
 &trans        &trans            &trans             &trans                &trans                 &trans    &trans  &kp PAGE_DOWN                                            &kp PIPE
             >;
 
-            sensor-bindings = <&scroll_right_left>;
+            sensor-bindings = <&inc_dec_kp RS(PLUS) LS(MINUS)>;
         };
 
         layer_2 {
