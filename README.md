@@ -1,88 +1,88 @@
-# moNa2 キーマップ設定
+# moNa2 Keymap Configuration
 
-個人用にカスタマイズしたmoNa2のZMKファームウェア設定リポジトリです。
+Personal customized ZMK firmware configuration for moNa2 split keyboard.
 
-## 目次
+## Table of Contents
 
-- [moNa2について](#mona2について)
-- [このリポジトリについて](#このリポジトリについて)
-- [キーマップ](#キーマップ)
-  - [Layer 0: デフォルト](#layer-0-デフォルト)
-  - [Layer 1: 数字・記号](#layer-1-数字記号)
-  - [Layer 3: ナビゲーション](#layer-3-ナビゲーション)
-  - [Layer 4: Bluetooth・システム](#layer-4-bluetoothシステム)
-- [コンボキー](#コンボキー)
-- [エンコーダ機能](#エンコーダ機能)
-- [トラックボール設定](#トラックボール設定)
-- [ファームウェアのビルド方法](#ファームウェアのビルド方法)
-- [参考リンク](#参考リンク)
+- [About moNa2](#about-mona2)
+- [About This Repository](#about-this-repository)
+- [Keymap](#keymap)
+  - [Layer 0: Default](#layer-0-default)
+  - [Layer 1: Numbers & Symbols](#layer-1-numbers--symbols)
+  - [Layer 3: Navigation](#layer-3-navigation)
+  - [Layer 4: Bluetooth & System](#layer-4-bluetooth--system)
+- [Combo Keys](#combo-keys)
+- [Encoder Functions](#encoder-functions)
+- [Trackball Settings](#trackball-settings)
+- [Building Firmware](#building-firmware)
+- [References](#references)
 
-## moNa2について
+## About moNa2
 
-moNa2は[白湯_sayu](https://x.com/Pooh_pol0)氏が設計した分離型ワイヤレスキーボードです。
+moNa2 is a split wireless keyboard designed by [sayu](https://x.com/Pooh_pol0).
 
-### 主な特徴
+### Key Features
 
-- **分離型設計**: 左右に分かれたエルゴノミクスレイアウト
-- **右手トラックボール**: PMW3610センサー搭載
-- **左手エンコーダ**: ロータリーエンコーダ対応
-- **ワイヤレス接続**: Bluetooth 5.0（ZMKファームウェア）
-- **マイコン**: Seeeduino XIAO BLE (nRF52840)
+- **Split Design**: Ergonomic left-right separated layout
+- **Right Hand Trackball**: PMW3610 sensor
+- **Left Hand Encoder**: Rotary encoder support
+- **Wireless Connection**: Bluetooth 5.0 (ZMK firmware)
+- **Microcontroller**: Seeeduino XIAO BLE (nRF52840)
 
-> 詳細は[moNa2紹介ページ](https://note.com/pooh_polo/n/ncfce62c909f5)をご参照ください。
+> For details, see [moNa2 Introduction Page](https://note.com/pooh_polo/n/ncfce62c909f5) (Japanese)
 
-## このリポジトリについて
+## About This Repository
 
-本リポジトリは[sayu-hub/zmk-config-moNa2-v2](https://github.com/sayu-hub/zmk-config-moNa2-v2)をフォークした個人用キーマップ設定です。
+This repository is a fork of [sayu-hub/zmk-config-moNa2-v2](https://github.com/sayu-hub/zmk-config-moNa2-v2) with personal keymap customizations.
 
-### ファイル構成
+### File Structure
 
 ```
 config/
-├── mona2.keymap      # キーマップ定義
-├── mona2.json        # ZMK Studio用レイアウト
-├── mona2_l.conf      # 左手側設定
-├── mona2_r.conf      # 右手側設定
-└── west.yml          # 依存モジュール定義
+├── mona2.keymap      # Keymap definitions
+├── mona2.json        # ZMK Studio layout
+├── mona2_l.conf      # Left side configuration
+├── mona2_r.conf      # Right side configuration
+└── west.yml          # Module dependencies
 ```
 
-## キーマップ
+## Keymap
 
-### Layer 0: デフォルト
+### Layer 0: Default
 
-基本のQWERTY配列。右側にマウスボタン、ホールドタップでレイヤー切り替え。
+Standard QWERTY layout with mouse buttons on right side. Hold-tap for layer switching.
 
 ```
-左手                                         右手
+Left Hand                                    Right Hand
 ┌─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┐
 │  Q  │  W  │  E  │  R  │  T  │               │  Y  │  U  │  I  │  O  │  P  │
 ├─────┼─────┼─────┼─────┼─────┤         ┌─────┼─────┼─────┼─────┼─────┼─────┤
 │  A  │  S  │  D  │  F  │  G  │         │  @  │  H  │  J  │  K  │  L  │  ;  │
 ├─────┼─────┼─────┼─────┼─────┼─────┐   ├─────┼─────┼─────┼─────┼─────┼─────┤
-│Z/SFT│  X  │  C  │  V  │  B  │  ,  │   │  .  │  N  │  M  │ MB1 │ MB2 │ MB1 │
+│  Z  │  X  │  C  │  V  │  B  │  ,  │   │  .  │  N  │  M  │ MB1 │ MB2 │ MB1 │
 ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┼─────┤
 │ ESC │SHIFT│ GUI │ BS  │ENTER│LANG2│   │LANG1│L1+SP│                 │ ALT │
 └─────┴─────┴─────┴─────┴─────┴─────┘   └─────┴─────┴─────────────────┴─────┘
-  ⟲ スクロール                                       ● トラックボール
+  ⟲ Scroll                                          ● Trackball
 ```
 
-**凡例:**
-| 表記 | 説明 |
-|------|------|
-| Z/SFT | 長押しで左Shift、タップでZ |
-| LANG2 | 長押しでLayer 2、タップでかな入力切替 |
-| LANG1 | 長押しでLayer 0、タップで英数入力切替 |
-| L1+SP | 長押しでLayer 1、タップでSpace |
-| MB1/MB2 | 左クリック / 右クリック |
+**Legend:**
+| Symbol | Description |
+|--------|-------------|
+| SHIFT | Sticky Shift (tap for one-shot, hold for normal shift) |
+| LANG2 | Hold for Layer 2, tap for Japanese input |
+| LANG1 | Hold for Layer 0, tap for English input |
+| L1+SP | Hold for Layer 1, tap for Space |
+| MB1/MB2 | Left click / Right click |
 | GUI | Command (⌘) |
 | BS | Backspace |
 
-### Layer 1: 数字・記号
+### Layer 1: Numbers & Symbols
 
-数字と各種記号。Layer 0でSpaceを長押しでアクセス。
+Numbers and various symbols. Access by holding Space on Layer 0.
 
 ```
-左手                                         右手
+Left Hand                                    Right Hand
 ┌─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┐
 │  1  │  2  │  3  │  4  │  5  │               │  6  │  7  │  8  │  9  │  0  │
 ├─────┼─────┼─────┼─────┼─────┤         ┌─────┼─────┼─────┼─────┼─────┼─────┤
@@ -92,15 +92,15 @@ config/
 ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┼─────┤
 │     │     │     │     │     │     │   │     │     │                 │  |  │
 └─────┴─────┴─────┴─────┴─────┴─────┘   └─────┴─────┴─────────────────┴─────┘
-  ⟲ 音量調整
+  ⟲ Volume Control
 ```
 
-### Layer 3: ナビゲーション
+### Layer 3: Navigation
 
-矢印キー、ページ移動、Mac操作。ALT + MB1 の同時押し（コンボ）でアクセス。
+Arrow keys, page navigation, Mac operations. Access via ALT + MB1 combo.
 
 ```
-左手                                         右手
+Left Hand                                    Right Hand
 ┌─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┐
 │ ESC │C+S+T│ S↑  │C+TAB│     │               │     │HOME │  ↑  │ END │     │
 ├─────┼─────┼─────┼─────┼─────┤         ┌─────┼─────┼─────┼─────┼─────┼─────┤
@@ -110,27 +110,27 @@ config/
 ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┼─────┤
 │     │     │     │     │     │     │   │     │     │                 │     │
 └─────┴─────┴─────┴─────┴─────┴─────┘   └─────┴─────┴─────────────────┴─────┘
-  ⟲ 横スクロール                                     ● スクロールモード
+  ⟲ Horizontal Scroll                               ● Scroll Mode
 ```
 
-**凡例:**
-| 表記 | 説明 |
-|------|------|
-| C+S+T | Ctrl+Shift+Tab（前のタブ） |
-| C+TAB | Ctrl+Tab（次のタブ） |
-| C+G+→ | Ctrl+Cmd+→（デスクトップ切替） |
-| S↑↓←→ | スクロール上下左右 |
-| ⌘+F | Spotlight検索 |
-| ⌘+TAB | アプリ切替 |
-| ⌘+` | 同一アプリ内ウィンドウ切替 |
+**Legend:**
+| Symbol | Description |
+|--------|-------------|
+| C+S+T | Ctrl+Shift+Tab (previous tab) |
+| C+TAB | Ctrl+Tab (next tab) |
+| C+G+→ | Ctrl+Cmd+→ (desktop switch) |
+| S↑↓←→ | Scroll up/down/left/right |
+| ⌘+F | Spotlight search |
+| ⌘+TAB | App switch |
+| ⌘+` | Window switch within app |
 | PGUP/PGDN | Page Up / Page Down |
 
-### Layer 4: Bluetooth・システム
+### Layer 4: Bluetooth & System
 
-Bluetoothプロファイル切替、ブートローダー、スクリーンショット。
+Bluetooth profile switching, bootloader, screenshots.
 
 ```
-左手                                         右手
+Left Hand                                    Right Hand
 ┌─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┐
 │     │⌘S+4 │⌘S+5 │⌘C+N │     │               │ BT0 │ BT1 │ BT2 │ BT3 │ BT4 │
 ├─────┼─────┼─────┼─────┼─────┤         ┌─────┼─────┼─────┼─────┼─────┼─────┤
@@ -140,94 +140,95 @@ Bluetoothプロファイル切替、ブートローダー、スクリーンシ�
 ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┼─────┤
 │     │     │     │     │     │     │   │     │     │                 │CLRAL│
 └─────┴─────┴─────┴─────┴─────┴─────┘   └─────┴─────┴─────────────────┴─────┘
-  ⟲ 輝度調整
+  ⟲ Brightness Control
 ```
 
-**凡例:**
-| 表記 | 説明 |
-|------|------|
-| ⌘S+4 | Cmd+Shift+4（スクリーンショット選択） |
-| ⌘S+5 | Cmd+Shift+5（スクリーンショットメニュー） |
-| ⌘C+N | Cmd+Ctrl+N（通知センター） |
-| BT0-4 | Bluetoothプロファイル0〜4 |
-| BOOT | ブートローダーモード |
-| BTCLR | 現在のプロファイルのペアリング解除 |
-| CLRAL | 全ペアリング解除 |
+**Legend:**
+| Symbol | Description |
+|--------|-------------|
+| ⌘S+4 | Cmd+Shift+4 (screenshot selection) |
+| ⌘S+5 | Cmd+Shift+5 (screenshot menu) |
+| ⌘C+N | Cmd+Ctrl+N (notification center) |
+| BT0-4 | Bluetooth profile 0-4 |
+| BOOT | Bootloader mode |
+| BTCLR | Clear current profile pairing |
+| CLRAL | Clear all pairings |
 
-## コンボキー
+## Combo Keys
 
-2つのキーを同時押しすることで発動する特殊キー。
+Special keys triggered by pressing two keys simultaneously.
 
-| 同時押しキー | 出力 | 位置 |
-|-------------|------|------|
-| A + S | TAB | 左手2段目 |
-| S + D | Shift+TAB | 左手2段目 |
-| I + O | " (ダブルクォート) | 右手1段目 |
-| O + P | ' (シングルクォート) | 右手1段目 |
-| U + I | - (マイナス) | 右手1段目 |
-| I + O | = (イコール) | 右手1段目 |
-| ALT + MB1 | ESC + Layer 3 | 右手親指 |
+| Keys | Output | Position |
+|------|--------|----------|
+| Q + W | ` (backtick) | Left hand row 1 |
+| S + D | TAB | Left hand row 2 |
+| D + F | Shift+TAB | Left hand row 2 |
+| U + I | - (minus) | Right hand row 1 |
+| I + O | = (equal) | Right hand row 1 |
+| K + L | " (double quote) | Right hand row 2 |
+| L + ; | ' (single quote) | Right hand row 2 |
+| ALT + MB1 | ESC + Layer 3 | Right thumb |
 
-## エンコーダ機能
+## Encoder Functions
 
-左手側のロータリーエンコーダはレイヤーごとに異なる機能を持ちます。
+The left-hand rotary encoder has different functions per layer.
 
-| レイヤー | 時計回り | 反時計回り |
-|---------|---------|-----------|
-| Layer 0 (Default) | スクロールダウン | スクロールアップ |
-| Layer 1 (Numbers) | 音量アップ | 音量ダウン |
-| Layer 3 (Navigation) | 横スクロール右 | 横スクロール左 |
-| Layer 4 (Bluetooth) | 輝度アップ | 輝度ダウン |
+| Layer | Clockwise | Counter-clockwise |
+|-------|-----------|-------------------|
+| Layer 0 (Default) | Scroll Down | Scroll Up |
+| Layer 1 (Numbers) | Volume Up | Volume Down |
+| Layer 3 (Navigation) | Scroll Right | Scroll Left |
+| Layer 4 (Bluetooth) | Brightness Up | Brightness Down |
 
-## トラックボール設定
+## Trackball Settings
 
-右手側にPMW3610センサーを使用したトラックボールを搭載。
+Right side features a trackball using PMW3610 sensor.
 
-- **CPI (感度)**: 600
-- **センサー**: PMW3610
-- **トラックボール**: [COROPIT](https://booth.pm/ja/items/6830658)を使用
+- **CPI (Sensitivity)**: 600
+- **Sensor**: PMW3610
+- **Trackball**: [COROPIT](https://booth.pm/ja/items/6830658)
 
-### スクロールモード
+### Scroll Mode
 
-Layer 3ではトラックボールがスクロールモードに切り替わります。
+In Layer 3, the trackball switches to scroll mode.
 
-## ファームウェアのビルド方法
+## Building Firmware
 
-### GitHub Actionsによる自動ビルド
+### Automatic Build via GitHub Actions
 
-1. `config/mona2.keymap`を編集
-2. コミット & プッシュ
-3. GitHub Actionsが自動でビルド
-4. Actionsタブからファームウェア（.uf2）をダウンロード
+1. Edit `config/mona2.keymap`
+2. Commit & Push
+3. GitHub Actions builds automatically
+4. Download firmware (.uf2) from Actions tab
 
-### ビルド成果物
+### Build Artifacts
 
-- `mona2_l-seeeduino_xiao_ble-zmk.uf2` - 左手用
-- `mona2_r-seeeduino_xiao_ble-zmk.uf2` - 右手用
+- `mona2_l-seeeduino_xiao_ble-zmk.uf2` - Left side
+- `mona2_r-seeeduino_xiao_ble-zmk.uf2` - Right side
 
-### ファームウェアの書き込み
+### Flashing Firmware
 
-1. キーボードをUSB接続
-2. リセットボタンを2回素早く押してブートローダーモードに入る
-3. マウントされた`XIAO-SENSE`ドライブに.uf2ファイルをコピー
-4. 自動で再起動して書き込み完了
+1. Connect keyboard via USB
+2. Double-press reset button quickly to enter bootloader mode
+3. Copy .uf2 file to mounted `XIAO-SENSE` drive
+4. Automatic restart completes the flash
 
-## 参考リンク
+## References
 
-### 公式リソース
+### Official Resources
 
-- [moNa2紹介ページ](https://note.com/pooh_polo/n/ncfce62c909f5)
-- [moNa2公式ファームウェア (sayu-hub)](https://github.com/sayu-hub/zmk-config-moNa2-v2)
-- [ZMK Firmware公式ドキュメント](https://zmk.dev/docs)
-- [moNaサポート・開発サーバー (Discord)](https://discord.gg/kJjDBDHGer)
+- [moNa2 Introduction Page](https://note.com/pooh_polo/n/ncfce62c909f5) (Japanese)
+- [moNa2 Official Firmware (sayu-hub)](https://github.com/sayu-hub/zmk-config-moNa2-v2)
+- [ZMK Firmware Documentation](https://zmk.dev/docs)
+- [moNa Support & Development Server (Discord)](https://discord.gg/kJjDBDHGer)
 
-### 使用ライブラリ
+### Libraries Used
 
-- [zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver) - トラックボールドライバ
-- [zmk-rgbled-widget](https://github.com/caksoylar/zmk-rgbled-widget) - RGB LED制御
-- [zmk-input-processor-keybind](https://github.com/zettaface/zmk-input-processor-keybind) - 入力プロセッサ
+- [zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver) - Trackball driver
+- [zmk-rgbled-widget](https://github.com/caksoylar/zmk-rgbled-widget) - RGB LED control
+- [zmk-input-processor-keybind](https://github.com/zettaface/zmk-input-processor-keybind) - Input processor
 
-### ツール
+### Tools
 
-- [ZMK Studio](https://zmk.studio/) - リアルタイムキーマップ編集
-- [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) - ビジュアルキーマップエディタ
+- [ZMK Studio](https://zmk.studio/) - Real-time keymap editing
+- [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) - Visual keymap editor
